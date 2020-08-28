@@ -1,0 +1,40 @@
+<ScreenManage>:
+    MainWindow:
+    CameraClick:
+<MainWindow>:
+    name:'main-one'
+    Button:
+        text: "Go "
+        on_release:
+            app.root.current = 'Am-era'
+            root.manager.transition.direction = "left"
+
+<CameraClick>:
+    name:'Am-era'
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: 'back'
+            size_hint_y: 0.1
+            height: '48dp'
+            on_press:
+                app.root.current = 'main-one'
+                root.manager.transition.direction = "right"
+         Camera:
+            id: camera
+            resolution: (640, 480)
+            play: False
+            size_hint_y: 0.35
+        BoxLayout:
+            id: img
+            size_hint_y: 0.35
+        ToggleButton:
+            text: 'Play'
+            on_press: camera.play = not camera.play
+            size_hint_y: 0.1
+            height: '48dp'
+        Button:
+            text: 'Capture'
+            size_hint_y: 0.1
+            height: '48dp'
+            on_press: root.capture()
